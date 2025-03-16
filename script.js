@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-  const video = document.querySelector('.viewer');
+  const video = document.querySelector('.player__video'); // Updated selector to match test
   const toggle = document.querySelector('.toggle');
   const volumeSlider = document.querySelector('.volume');
   const playbackSpeedSlider = document.querySelector('.playbackSpeed');
@@ -11,25 +11,32 @@ document.addEventListener('DOMContentLoaded', () => {
   function togglePlay() {
     video[video.paused ? 'play' : 'pause']();
   }
+
   function updateButton() {
     toggle.textContent = video.paused ? '►' : '❚ ❚';
   }
+
   function handleVolumeChange() {
     video.volume = volumeSlider.value;
   }
+
   function handlePlaybackSpeedChange() {
     video.playbackRate = playbackSpeedSlider.value;
   }
+
   function rewind() {
     video.currentTime -= 10;
   }
+
   function fastForward() {
     video.currentTime += 25;
   }
+
   function updateProgress() {
     const percent = (video.currentTime / video.duration) * 100;
     progressFilled.style.width = `${percent}%`;
   }
+
   function scrub(event) {
     const scrubTime = (event.offsetX / progress.offsetWidth) * video.duration;
     video.currentTime = scrubTime;
